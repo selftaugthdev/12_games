@@ -8,6 +8,38 @@
     <title>Rock Paper Scissors</title>
 </head>
 <body>
-    
+    <section class="game">
+        <h1 class="title">Rock Paper Scissors: Can You Beat The Computer?</h1>
+        <!-- display the player and computer score -->
+        <div class="score">
+            <div class="playerScore">
+                <h2>Player</h2>
+                <p class="playerCount">0</p>
+            </div>
+
+            <div class="computerScore">
+                <h2>Computer</h2>
+                <p class="computerCount">0</p>
+            </div>
+        </div>
+
+        <div class="move">Choose your move</div>
+        
+        <!--Number of moves left before game ends -->
+        <div class="movesleft">Moves Left: 5 </div>
+        
+        <!--Options available to player to play game -->
+        <div class="options">
+            <button class="rock">Rock</button>
+            <button class="paper">Paper</button>
+            <button class="scissor">Scissors</button>
+        </div>
+        
+        <!--Final result of game -->
+        <div class="result"></div>
+        
+        <!--Reload the game -->
+        <button class="reload"></button>
+    </section>
 </body>
 </html>
