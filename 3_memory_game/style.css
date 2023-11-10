@@ -1,0 +1,34 @@
+/* styles.css */
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    height: 100vh;
+    display: flex;
+    background: #7606b2;
+  }
+
+  .memory-card img {
+    border: none;
+}
+  
+  #gameBoard {
+    width: 640px;
+    height: 640px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .memory-card {
+    width: calc(25% - 10px);
+    height: calc(33.333% - 10px);
+    margin: 5px;
+    position: relative;
+    box-shadow: 1px 1px 1px rgba(0,0,0,.3);
+    box-shadow: none;
+  }
