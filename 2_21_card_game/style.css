@@ -41,3 +41,9 @@ body {
     font-size: 20px;
     border-radius: 15px;
 }
+
+#results {
+    color: white;
+    font-weight: 600;
+    font-size: 36px;
+}

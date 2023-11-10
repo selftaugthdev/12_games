@@ -118,7 +118,7 @@ function hit() {
     if (yourSum > 21) {
         document.getElementById("your-sum").innerHTML = "BUST!"
     } else if (yourSum === 21) {
-        document.getElementById("your-sum").innerHTML = "21!"
+        document.getElementById("your-sum").innerHTML = "21! Now It's The Dealer's Turn"
     } else (document.getElementById("your-sum").innerHTML = "Hit Again Or Hold!")
 
     // Update the UI accordingly
@@ -126,13 +126,49 @@ function hit() {
 }
 
 function hold() {
-    // End the player's turn and start the dealer's turn
-    // ...
+    // Reveal dealer's facedown card and update sum
+    revealDealerCard();
+    updateDealerSum();
 
-    // Determine the outcome of the game
-    // ...
+    // Dealer keeps hitting until their sum is 17 or higher
+    while (dealerSum < 17) {
+        dealCard("dealer");
+        updateDealerSum();
+    }
 
-    // Update the UI to show the results
+    // Determine and display the outcome
+    determineOutcome();
+}
+
+function revealDealerCard() {
+    // Logic to reveal the dealer's facedown card
+    // This may involve updating the dealer's hand display and adjusting the dealer's sum
     // ...
 }
+
+function updateDealerSum() {
+    // Update dealer's sum on the UI
+    document.getElementById("dealer-sum").textContent = dealerSum;
+}
+
+function determineOutcome() {
+    // Compare sums to determine the outcome
+    if (yourSum > 21) {
+        // Player busts
+        document.getElementById("results").textContent = "You Lose!";
+    } else if (dealerSum > 21) {
+        // Dealer busts
+        document.getElementById("results").textContent = "You Win!";
+    } else if (yourSum > dealerSum) {
+        // Player has higher sum
+        document.getElementById("results").textContent = "You Win!";
+    } else if (yourSum < dealerSum) {
+        // Dealer has higher sum
+        document.getElementById("results").textContent = "You Lose!";
+    } else {
+        // Ties
+        document.getElementById("results").textContent = "It's a Draw!";
+    }
+}
+
 
