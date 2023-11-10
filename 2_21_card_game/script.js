@@ -54,6 +54,20 @@ function startGame() {
 
     updateSums();
     // Check for Blackjack or further actions
+
+    // Re-enable the "Hit" and "Hold" buttons
+    document.getElementById("hit").disabled = false;
+    document.getElementById("hold").disabled = false;
+}
+
+function adjustForAce(player) {
+    if (player === "player" && yourSum > 21 && yourAceCount > 0) {
+        yourSum -= 10; // Adjust sum as if one Ace is counted as 1 instead of 11
+        yourAceCount--; // Reduce the count of Aces being treated as 11
+    } else if (player === "dealer" && dealerSum > 21 && dealerAceCount > 0) {
+        dealerSum -= 10;
+        dealerAceCount--;
+    }
 }
 
 function resetGameState() {
@@ -75,6 +89,8 @@ function dealCard(player, isFaceDown = false) {
     // Deal the card and update UI
     const card = deck.pop();
     let cardValue = getCardValue(card);
+
+    adjustForAce(player);
 
     if (player === "player") {
         yourSum += cardValue;
@@ -116,13 +132,12 @@ function hit() {
 
     // Update the player's sum and check for bust
     if (yourSum > 21) {
-        document.getElementById("your-sum").innerHTML = "BUST!"
+        document.getElementById("your-sum").textContent = "BUST!"
     } else if (yourSum === 21) {
-        document.getElementById("your-sum").innerHTML = "21! Now It's The Dealer's Turn"
-    } else (document.getElementById("your-sum").innerHTML = "Hit Again Or Hold!")
+        document.getElementById("your-sum").textContent = "21! Now It's The Dealer's Turn"
+    } else (document.getElementById("your-sum").textContent = (`${yourSum} | Hit Again Or Hold!`));
 
-    // Update the UI accordingly
-    // ...
+    adjustForAce("player");
 }
 
 function hold() {
@@ -138,6 +153,10 @@ function hold() {
 
     // Determine and display the outcome
     determineOutcome();
+
+    // Disable the "Hit" and "Hold" buttons
+    document.getElementById("hit").disabled = true;
+    document.getElementById("hold").disabled = true;
 }
 
 function revealDealerCard() {
